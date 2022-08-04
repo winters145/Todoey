@@ -9,7 +9,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    let itemArray = ["Shopping List", "Work things", "Events"]
+    var itemArray = ["Shopping List", "Work things", "Events"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,6 @@ class TodoListViewController: UITableViewController {
             var cellContent = cell.defaultContentConfiguration()
             cellContent.text = itemArray[indexPath.row]
             cell.contentConfiguration = cellContent
-            print(cellContent.text!)
         } else {
             // Fallback on earlier versions
             cell.textLabel?.text = itemArray[indexPath.row]
@@ -35,6 +34,8 @@ class TodoListViewController: UITableViewController {
         
         return cell
     }
+    
+    //MARK: - TableView Delegate Methods
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -45,6 +46,32 @@ class TodoListViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //MARK: - Add New Items
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+
+            self.itemArray.append(textField.text!)
+            print("Successfully added item.")
+            
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new item"
+            textField = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
