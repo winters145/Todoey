@@ -17,13 +17,7 @@ class TodoListViewController: UITableViewController {
         
         print(dataFilePath)
         
-        var newItem = Item()
-        newItem.title = "Find Mike"
-        itemArray.append(newItem)
-//        if let items = defaults.array(forKey: "TodoListArray") as? [Item] {
-//            itemArray = items
-//        }
-        
+        loadItems()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,6 +94,18 @@ class TodoListViewController: UITableViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding \(error)")
+            }
+        }
     }
 }
 
