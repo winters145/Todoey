@@ -10,7 +10,7 @@ import CoreData
 
 class CategoryViewController: UITableViewController {
 
-    var categoryArray = [Category]()
+    var categoryArray = [`Category`]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -52,7 +52,7 @@ class CategoryViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Todoey Category", message: "", preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "Add Category", style: .default) { action in
+        let action = UIAlertAction(title: "Add", style: .default) { action in
             
             let newCategory = Category(context: self.context)
             newCategory.name = textField.text!
@@ -74,11 +74,11 @@ class CategoryViewController: UITableViewController {
     //MARK: - Data Manipulation Methods
     
     func saveCategories() {
-        
+      
         do {
             try context.save()
         } catch {
-            print("Error saving context, \(error)")
+            print("Error saving category, \(error)")
         }
         
         tableView.reloadData()
@@ -91,8 +91,24 @@ class CategoryViewController: UITableViewController {
         } catch {
             print("Error fetching data from context \(error)")
         }
+        
         tableView.reloadData()
     }
+    
     //MARK: - TableView Delegate Methods
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! TodoListViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categoryArray[indexPath.row]
+        }
+        
+    }
 }
