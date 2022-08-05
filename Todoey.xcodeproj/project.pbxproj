@@ -64,9 +64,9 @@
 				8042FAB0289BC5CE00949F92 /* SceneDelegate.swift */,
 				8048C4B4289C046F00D589E7 /* Controllers */,
 				8048C4B5289C047D00D589E7 /* Views */,
+				8048C4B3289C042D00D589E7 /* Models */,
 				8048C4B6289C048500D589E7 /* Supporting Files */,
 				8042FABC289BC5CF00949F92 /* Info.plist */,
-				8048C4B3289C042D00D589E7 /* Models */,
 			);
 			path = Todoey;
 			sourceTree = "<group>";
