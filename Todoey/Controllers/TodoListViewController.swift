@@ -116,7 +116,8 @@ class TodoListViewController: SwipeTableViewController {
         tableView.reloadData()
     }
 
-//MARK: - Delete Data From Swipe
+    //MARK: - Delete Data From Swipe
+    
     override func updateModel(at indexPath: IndexPath) {
         
         super.updateModel(at: indexPath)
