@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
 
@@ -23,7 +24,20 @@ class TodoListViewController: SwipeTableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = 80
-//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let colourHex = selectedCategory?.backgroundColour {
+            
+            title = selectedCategory?.name
+            guard let navBar = navigationController?.navigationBar else {
+                fatalError("Navigation controller does not exist.")
+            }
+            
+            navBar.scrollEdgeAppearance?.backgroundColor = UIColor(hexString: colourHex)
+            navBar.scrollEdgeAppearance?.largeTitleTextAttributes = [.foregroundColor: ContrastColorOf(UIColor(hexString: colourHex)!, returnFlat: true)]
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,21 +48,35 @@ class TodoListViewController: SwipeTableViewController {
 
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        let item = todoItems?[indexPath.row]
-        
-        if #available(iOS 14.0, *) {
-            var cellContent = cell.defaultContentConfiguration()
-            cellContent.text = item?.title ?? "No items added"
-            cell.contentConfiguration = cellContent
-        } else {
-            // Fallback on earlier versions
-            cell.textLabel?.text = item?.title ?? "No items added"
+        if let item = todoItems?[indexPath.row] {
+            let categoryColour = UIColor(hexString: (selectedCategory!.backgroundColour)!)
+            
+            if #available(iOS 14.0, *) {
+                var cellContent = cell.defaultContentConfiguration()
+                cellContent.text = item.title
+                if let colour = categoryColour?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+                    cell.backgroundColor = colour
+                    cellContent.textProperties.color = ContrastColorOf(colour, returnFlat: true)
+                }
+                cell.contentConfiguration = cellContent
+            } else {
+                // Fallback on earlier versions
+                cell.textLabel?.text = item.title
+                if let colour = FlatSkyBlue().darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+                    cell.backgroundColor = colour
+                    cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+                }
+            }
+            
+            
+            cell.accessoryType = item.done ? .checkmark : .none
         }
+        
         
         // Ternary Operator
-        if let safeItem = item {
-            cell.accessoryType = safeItem.done ? .checkmark : .none
-        }
+//        if let safeItem = item {
+//            cell.accessoryType = safeItem.done ? .checkmark : .none
+//        }
         
         return cell
     }
