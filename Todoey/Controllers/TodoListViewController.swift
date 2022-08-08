@@ -11,6 +11,8 @@ import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var todoItems: Results<Item>?
     let realm = try! Realm()
     
@@ -37,6 +39,10 @@ class TodoListViewController: SwipeTableViewController {
             
             navBar.scrollEdgeAppearance?.backgroundColor = UIColor(hexString: colourHex)
             navBar.scrollEdgeAppearance?.largeTitleTextAttributes = [.foregroundColor: ContrastColorOf(UIColor(hexString: colourHex)!, returnFlat: true)]
+            
+            view.backgroundColor = UIColor(hexString: colourHex)
+            
+            searchBar.barTintColor = UIColor(hexString: colourHex)?.lighten(byPercentage: 20.0)
         }
     }
 
