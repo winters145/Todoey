@@ -16,6 +16,7 @@
 		807ACE5B289D275600CD4C88 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807ACE5A289D275600CD4C88 /* CategoryViewController.swift */; };
 		80DE77EC289D61660087F873 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE77EB289D61660087F873 /* Item.swift */; };
 		80DE77EE289D616F0087F873 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE77ED289D616F0087F873 /* Category.swift */; };
+		80F5E22E28A116C30044AEC9 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F5E22D28A116C30044AEC9 /* SwipeTableViewController.swift */; };
 		8894F14615F3E6DC98F16867 /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444BCE1EE5597EBD3DF6749F /* Pods_Todoey.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		807ACE5A289D275600CD4C88 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		80DE77EB289D61660087F873 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		80DE77ED289D616F0087F873 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		80F5E22D28A116C30044AEC9 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				807ACE5A289D275600CD4C88 /* CategoryViewController.swift */,
 				8042FAB2289BC5CE00949F92 /* TodoListViewController.swift */,
+				80F5E22D28A116C30044AEC9 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				807ACE5B289D275600CD4C88 /* CategoryViewController.swift in Sources */,
 				8042FAB3289BC5CE00949F92 /* TodoListViewController.swift in Sources */,
 				8042FAAF289BC5CE00949F92 /* AppDelegate.swift in Sources */,
+				80F5E22E28A116C30044AEC9 /* SwipeTableViewController.swift in Sources */,
 				80DE77EC289D61660087F873 /* Item.swift in Sources */,
 				8042FAB1289BC5CE00949F92 /* SceneDelegate.swift in Sources */,
 				80DE77EE289D616F0087F873 /* Category.swift in Sources */,
