@@ -21,6 +21,16 @@ class CategoryViewController: SwipeTableViewController {
         loadCategories()
         tableView.rowHeight = 80
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+                
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("Navigation controller does not exist.")
+        }
+        
+        navBar.scrollEdgeAppearance?.backgroundColor = UIColor(named: "NavBarHome")
+        navBar.scrollEdgeAppearance?.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    }
 
     //MARK: - TableView Datasource Methods
     
@@ -121,6 +131,8 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         performSegue(withIdentifier: "goToItems", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
